@@ -1,36 +1,38 @@
 "use client";
 
-import { useFormState } from "react-dom";
-import { create } from "@/actions/create-board";
+import { createBoard } from "@/actions/create-board";
+import { FormInput } from "@/components/form/form-input";
+import { FormSubmit } from "@/components/form/form-submit";
 import { Button } from "@/components/ui/button";
+import { useAction } from "@/hooks/use-action";
 
 export const Form = () => {
-  const initialState = { message: null, errors: {}};
-  const [state, dispatch] = useFormState(create, initialState);
+  const { execute, fieldErrors } = useAction(createBoard, {
+    onSuccess: (data) => {
+      console.log(data, "SUCCESS!")
+    },
+    onError: (error) => {
+      console.error(error);
+    }
+  });
 
+  const onSubmit = (formDara: FormData) => {
+    const title = formDara.get("title") as string;
+
+    execute({title});
+  }
   return (
-    <form action={dispatch}>
+    <form action={onSubmit}>
       <div className="flex flex-col space-y-2">
-        <input
+        <FormInput
           id="title"
-          name="title"
-          required
-          placeholder="enter a board title"
-          className="border-black border p-1" 
+          errors={fieldErrors}
+          label="Board Title"
         />
-        {state?.errors?.title ? (
-          <div>
-            {state.errors.title.map((error: string) => (
-              <p key={error} className="text-rose-500">
-                {error}
-              </p>
-            ))}
-          </div>
-        ) : null}
       </div>
-      <Button type="submit">
-        Submit
-      </Button>
+      <FormSubmit>
+        Save
+      </FormSubmit>
     </form>
   );
 };
