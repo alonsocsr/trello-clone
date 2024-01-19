@@ -28,7 +28,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     });
   } catch (error) {
     return {
-      error: "Failed to create. DB error"
+      error: "Failed to create. Try Again later"
     }
   }
 
