@@ -34,7 +34,7 @@ export const ListForm = () => {
 
   const { execute, fieldErrors } = useAction(createList, {
     onSuccess: (data) => {
-      toast.success(`List "${data.title} created"`);
+      toast.success(`List "${data.title}" created`);
       disableEditing();
       router.refresh();
     },
@@ -103,7 +103,8 @@ export const ListForm = () => {
     <ListWrapper>
       <Button
         onClick={enableEditing}
-        className="w-full rounded-md bg-white/80 hover:bg-white/50 transition p-3 flex items-center font-medium text-sm text-black"
+        className="w-full rounded-md p-3 h-11 bg-white/80 hover:bg-white/50 transition flex items-center font-medium text-sm"
+        variant="ghost"
       >
         <Plus className="h-4 w-4 mr-2"/>
         Add a list
