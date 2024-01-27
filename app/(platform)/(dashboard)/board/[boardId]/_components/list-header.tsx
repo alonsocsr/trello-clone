@@ -7,6 +7,7 @@ import { ListWithCards } from "@/types";
 import { ElementRef, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useEventListener } from "usehooks-ts";
+import { ListOptions } from "./list-options";
 
 interface ListHeaderProps {
   data: ListWithCards,
@@ -95,11 +96,15 @@ export const ListHeader = ({
       ) : (
         <div
           onClick={enableEditing} 
-          className="w-full text-sm px-2.5 py-1 h-7 font-medium border-transparent"
+          className="w-full text-sm px-2.5 py-1 font-medium border-transparent"
         >
           {title}
         </div>
       )}
+      <ListOptions
+        onAddCard={() => {}}
+        data={data}
+      />
     </div>
   );
 };
