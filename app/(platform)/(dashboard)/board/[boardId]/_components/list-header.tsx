@@ -98,7 +98,7 @@ export const ListHeader = ({
       ) : (
         <div
           onClick={enableEditing} 
-          className="w-full text-sm px-2.5 py-1 font-medium border-transparent"
+          className="max-w-[200px] w-full text-sm px-2.5 py-1 font-medium border-transparent break-words"
         >
           {title}
         </div>
